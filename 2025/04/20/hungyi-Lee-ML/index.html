@@ -1,32 +1,216 @@
-extends includes/layout.pug
-
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
-    .top-img.gist(style=`background-image: url(${url_for(top_img)})`)
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
-        
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hungyi_Lee_ML | i6bimua</title><meta name="author" content="i6bimua"><meta name="copyright" content="i6bimua"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="李宏毅ML2022HW01通过Middle Baseline只需要对于特征选择部分进行一定的更改就行，将前四天的所有特征和结果都选取上 1feat_idx &#x3D; [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,53,69,86,101]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hungyi_Lee_ML">
+<meta property="og:url" content="https://i6biua.github.io/blog/2025/04/20/hungyi-Lee-ML/index.html">
+<meta property="og:site_name" content="i6bimua">
+<meta property="og:description" content="李宏毅ML2022HW01通过Middle Baseline只需要对于特征选择部分进行一定的更改就行，将前四天的所有特征和结果都选取上 1feat_idx &#x3D; [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,53,69,86,101]">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i6biua.github.io/blog/img/raingirl.jpg">
+<meta property="article:published_time" content="2025-04-20T14:04:16.000Z">
+<meta property="article:modified_time" content="2025-04-20T14:07:50.316Z">
+<meta property="article:author" content="i6bimua">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i6biua.github.io/blog/img/raingirl.jpg"><link rel="shortcut icon" href="/blog/img/avatar.jpg"><link rel="canonical" href="https://i6biua.github.io/blog/2025/04/20/hungyi-Lee-ML/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hungyi_Lee_ML',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-04-20 22:07:50'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/blog/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/raingirl.jpg')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="i6bimua"><span class="site-name">i6bimua</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">hungyi_Lee_ML</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-20T14:04:16.000Z" title="发表于 2025-04-20 22:04:16">2025-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-20T14:07:50.316Z" title="更新于 2025-04-20 22:07:50">2025-04-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="hungyi_Lee_ML"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img gist" style="background-image: url(/blog/img/raingirl.jpg)"></div><article class="post-content" id="article-container"><h1 id="李宏毅ML2022"><a href="#李宏毅ML2022" class="headerlink" title="李宏毅ML2022"></a>李宏毅ML2022</h1><h2 id="HW01"><a href="#HW01" class="headerlink" title="HW01"></a>HW01</h2><p>通过Middle Baseline只需要对于特征选择部分进行一定的更改就行，将前四天的所有特征和结果都选取上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">feat_idx = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">23</span>,<span class="number">24</span>,<span class="number">25</span>,<span class="number">26</span>,<span class="number">27</span>,<span class="number">28</span>,<span class="number">29</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">32</span>,<span class="number">33</span>,<span class="number">34</span>,<span class="number">35</span>,<span class="number">36</span>,<span class="number">37</span>,<span class="number">38</span>,<span class="number">53</span>,<span class="number">69</span>,<span class="number">86</span>,<span class="number">101</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Strong Baseline</p>
+<p>调整神经网络架构，加入L2正则化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="variable language_">self</span>.layers = nn.Sequential(</span><br><span class="line">       nn.Linear(input_dim, <span class="number">16</span>),</span><br><span class="line">       nn.LeakyReLU(<span class="number">0.1</span>),</span><br><span class="line">       nn.Linear(<span class="number">16</span>, <span class="number">8</span>),</span><br><span class="line">       nn.LeakyReLU(<span class="number">0.1</span>),            </span><br><span class="line">       nn.Linear(<span class="number">8</span>, <span class="number">1</span>)</span><br><span class="line">   ) 			       </span><br><span class="line">optimizer = torch.optim.RMSprop(model.parameters(),lr=config[<span class="string">&#x27;learning_rate&#x27;</span>]*<span class="number">10</span>,weight_decay=<span class="number">1e-3</span>) </span><br></pre></td></tr></table></figure>
+
+<p>Boss Baseline</p>
+<p>继续调整神经网络架构</p>
+<p>一般<code>输入 → 卷积1 → BatchNorm1 → 激活函数 → Dropout → 卷积2 → BatchNorm2 → 激活函数</code></p>
+<p>BactchNorm1d在激活函数前，激活函数后进行Dropout</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">self</span>.layers = nn.Sequential(</span><br><span class="line">    nn.Linear(input_dim, <span class="number">64</span>),</span><br><span class="line">    nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">    nn.BatchNorm1d(<span class="number">64</span>),//batch normalization</span><br><span class="line">    nn.Dropout(<span class="number">0.2</span>),//随机失活抑制过拟合</span><br><span class="line">    </span><br><span class="line">    nn.Linear(<span class="number">64</span>, <span class="number">16</span>),</span><br><span class="line">    nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">    nn.Dropout(<span class="number">0.1</span>),</span><br><span class="line">    </span><br><span class="line">    nn.Linear(<span class="number">16</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>加入SelectKBest进行特征选取，选取前k个表现最好的，防止噪声干扰</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">32</span></span><br><span class="line">selector = SelectKBest(score_func=f_regression, k=k)</span><br><span class="line">result = selector.fit(x_data, y_data)</span><br><span class="line">idx = np.argsort(result.scores_)[::-<span class="number">1</span>]</span><br><span class="line">selected_idx = <span class="built_in">list</span>(np.sort(idx[:k]))</span><br></pre></td></tr></table></figure>
+
+<p>调整学习器加入余弦退火热重启，自动调整学习速率，跳出critical point</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.Adam(model.parameters(), lr=config[<span class="string">&#x27;learning_rate&#x27;</span>]*<span class="number">50</span>,</span><br><span class="line">                             weight_decay=<span class="number">1e-3</span>)</span><br><span class="line">scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, </span><br><span class="line">                                    T_0=<span class="number">2</span>, T_mult=<span class="number">2</span>, eta_min=config[<span class="string">&#x27;learning_rate&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hw02"><a href="#Hw02" class="headerlink" title="Hw02"></a>Hw02</h2><p>Middle Baseline调整一下<code>concat_nframes , hidden_layers , hidden_dim</code>即可</p>
+<p>Strong Baseline需要调整hyperparameter并且加入batch normalization和dropout</p>
+<p>需要注意的是为了让训练更快并且收敛，需要增大batch_size，同时需要增大epoch以达到同样的精确度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">        <span class="variable language_">self</span>.block = nn.Sequential(</span><br><span class="line">            nn.Linear(input_dim, output_dim),</span><br><span class="line">            nn.BatchNorm1d(output_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.1</span>),</span><br><span class="line">            nn.Dropout(<span class="number">0.2</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="comment"># data prarameters</span></span><br><span class="line">concat_nframes = <span class="number">19</span>             <span class="comment"># the number of frames to concat with, n must be odd (total 2k+1 = n frames)</span></span><br><span class="line">train_ratio = <span class="number">0.8</span>               <span class="comment"># the ratio of data used for training, the rest will be used for validation</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># training parameters</span></span><br><span class="line">seed = <span class="number">0</span>                        <span class="comment"># random seed</span></span><br><span class="line">batch_size = <span class="number">2048</span>                <span class="comment"># batch size</span></span><br><span class="line">num_epoch = <span class="number">42</span>                   <span class="comment"># the number of training epoch</span></span><br><span class="line">learning_rate = <span class="number">0.0001</span>          <span class="comment"># learning rate</span></span><br><span class="line">model_path = <span class="string">&#x27;./model.ckpt&#x27;</span>     <span class="comment"># the path where the checkpoint will be saved</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># model parameters</span></span><br><span class="line">input_dim = <span class="number">39</span> * concat_nframes <span class="comment"># the input dim of the model, you should not change the value</span></span><br><span class="line">hidden_layers = <span class="number">14</span>             <span class="comment"># the number of hidden layers</span></span><br><span class="line">hidden_dim = <span class="number">1024</span>              <span class="comment"># the hidden dim</span></span><br></pre></td></tr></table></figure>
+
+<p>Bossline需要自行实现RNN（这里使用LSTM进行优化，截止至2025年LSTM仍是讨论的热门）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://i6biua.github.io/blog">i6bimua</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://i6biua.github.io/blog/2025/04/20/hungyi-Lee-ML/">https://i6biua.github.io/blog/2025/04/20/hungyi-Lee-ML/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://i6biua.github.io/blog" target="_blank">i6bimua</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/ML/">ML</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/raingirl.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/blog/2024/11/12/LEETCODE3258/" title="LEETCODE3258"><img class="cover" src="/blog/img/bg.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LEETCODE3258</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/blog/img/avatar.jpg" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">i6bimua</div><div class="author-info__description">天有雨</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/i6biua"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天有雨</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%8E%E5%AE%8F%E6%AF%85ML2022"><span class="toc-number">1.</span> <span class="toc-text">李宏毅ML2022</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HW01"><span class="toc-number">1.1.</span> <span class="toc-text">HW01</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hw02"><span class="toc-number">1.2.</span> <span class="toc-text">Hw02</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/2025/04/20/hungyi-Lee-ML/" title="hungyi_Lee_ML"><img src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="hungyi_Lee_ML"/></a><div class="content"><a class="title" href="/blog/2025/04/20/hungyi-Lee-ML/" title="hungyi_Lee_ML">hungyi_Lee_ML</a><time datetime="2025-04-20T14:04:16.000Z" title="发表于 2025-04-20 22:04:16">2025-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/12/LEETCODE3258/" title="LEETCODE3258"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3258"/></a><div class="content"><a class="title" href="/blog/2024/11/12/LEETCODE3258/" title="LEETCODE3258">LEETCODE3258</a><time datetime="2024-11-12T14:18:13.000Z" title="发表于 2024-11-12 22:18:13">2024-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/10/LEETCODE540/" title="LEETCODE540"><img src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE540"/></a><div class="content"><a class="title" href="/blog/2024/11/10/LEETCODE540/" title="LEETCODE540">LEETCODE540</a><time datetime="2024-11-10T01:49:46.000Z" title="发表于 2024-11-10 09:49:46">2024-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/06/LEETCODE3255/" title="LEETCODE3255"><img src="/blog/img/kabuto.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3255"/></a><div class="content"><a class="title" href="/blog/2024/11/06/LEETCODE3255/" title="LEETCODE3255">LEETCODE3255</a><time datetime="2024-11-06T01:36:01.000Z" title="发表于 2024-11-06 09:36:01">2024-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/05/LEETCODE3222/" title="LEETCODE3222"><img src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3222"/></a><div class="content"><a class="title" href="/blog/2024/11/05/LEETCODE3222/" title="LEETCODE3222">LEETCODE3222</a><time datetime="2024-11-05T04:57:18.000Z" title="发表于 2024-11-05 12:57:18">2024-11-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By i6bimua</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

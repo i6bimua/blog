@@ -1,7 +1,213 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>i6bimua</title><meta name="author" content="i6bimua"><meta name="copyright" content="i6bimua"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="天有雨">
+<meta property="og:type" content="website">
+<meta property="og:title" content="i6bimua">
+<meta property="og:url" content="https://i6biua.github.io/blog/page/2/index.html">
+<meta property="og:site_name" content="i6bimua">
+<meta property="og:description" content="天有雨">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i6biua.github.io/blog/img/avatar.jpg">
+<meta property="article:author" content="i6bimua">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i6biua.github.io/blog/img/avatar.jpg"><link rel="shortcut icon" href="/blog/img/avatar.jpg"><link rel="canonical" href="https://i6biua.github.io/blog/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'i6bimua',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-04-20 22:12:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/blog/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/blog/" title="i6bimua"><span class="site-name">i6bimua</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">i6bimua</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/blog/2024/10/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9/" title="数据结构知识点"><img class="post-bg" src="/blog/img/mitsuha.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="数据结构知识点"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9/" title="数据结构知识点">数据结构知识点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-31T03:13:00.000Z" title="发表于 2024-10-31 11:13:00">2024-10-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/">数据结构与算法分析</a></span></div><div class="content">第 2 章 算法分析$log^{k}N&#x3D;O(N)$
+第 3 章 基础 ADT3.5 List
+Array-based lists
+Pointer-based lists(Linked lists)
+
+Array ImplementationInsert
+12345678910// insert element at the current positionvoid insert(const E&amp; it) &#123;  Assert(listSize&gt;=maxSize, “Exceed capacity”);  //shift Elements up   for(int i=listSize; i&gt;curr; i--)      listArray[i] = listArray[i-1];   listArray[curr] = it; // insert the element  listSize++;  // increment list size&#125;
+
+remove
+1234567891011// Remove and return the  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/blog/2024/10/29/LEETCODE3211/" title="LEETCODE3211"><img class="post-bg" src="/blog/img/ayanami.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3211"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/29/LEETCODE3211/" title="LEETCODE3211">LEETCODE3211</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-29T04:20:46.000Z" title="发表于 2024-10-29 12:20:46">2024-10-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/ACM/">ACM</a></span></div><div class="content">3211. 生成不含相邻零的二进制字符串
+思路由于每个长度为2的子字符串都必须含一个1，所以如果前一个字符为‘0’的话下一个字符必须是‘1’，如果上一个字符是‘1’的话那么下一个字符填什么都可以，直接模拟这个过程写一个dfs即可
+Solutions123456789101112131415161718192021class Solution &#123;public:    vector&lt;string&gt; validStrings(int n) &#123;        vector&lt;string&gt; ans;        string path(n, 0);        auto dfs = [&amp;](auto&amp;&amp; dfs, int i) -&gt; void&#123;            if(i == n)&#123;                ans.push_back(path);                return;            &#125;            path[i] = &#x27;1& ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/blog/2024/10/28/%E8%AE%A1%E7%BB%84%E8%AF%95%E9%A2%98/" title="计组试题"><img class="post-bg" src="/blog/img/bg2.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="计组试题"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/28/%E8%AE%A1%E7%BB%84%E8%AF%95%E9%A2%98/" title="计组试题">计组试题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-28T04:30:00.000Z" title="发表于 2024-10-28 12:30:00">2024-10-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></span></div><div class="content">
+Which type of memory will need refresh circuitry. AA. DRAM       B. Flash       C. ROM       D. Blu-rayDRAM 除非被经常访问用于读&#x2F;写，否则不能长期保持其状态
+The advantage of carry-lookahead adder is.DA. decrease cost of the adder.       B. save hardware parts.C. augment CPU clock frequency.       D. accelerate the generation of the carries.carry-lookahead 就是为了减少加法器的延迟
+In the direct addressing mode.BA. The operand is inside the instruction.B. The address of the operand is inside the instruction.C. The register con ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/blog/2024/10/27/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/" title="训练记录"><img class="post-bg" src="/blog/img/run.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="训练记录"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/27/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/" title="训练记录">训练记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-27T06:37:12.000Z" title="发表于 2024-10-27 14:37:12">2024-10-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/%E4%BD%93%E8%82%B2/">体育</a></span></div><div class="content">2024&#x2F;10&#x2F;26日正式启动跑步时我只会问自己：我是否配得上今天呢？意义吗？很多事情本来就没有意义，我赋予其意义
+我写我，无论主谓宾，可以反复错
+我生命的意义不需要任何人去指正，这是我的人生，我做自己想做的事，成为自己想成为的人，何时开始何时放弃何时做何事都只有我自己决定。你觉得我太过苦行僧也好，觉得我瞬息万变不坚持也罢，我只是我。
+我有我在乎的人，我爱的人，我爱我所爱，我享受生命的一切。大部分时间我一个人都足够自洽，我的内心世界有无尽的远方，我要和朋友去见更多的风景，极光，雪原，星海，山巅；我要和在乎的人享受平凡生活中的每一点美好，发丝闪烁的微光，大雪时屋内两人温暖的毛毯，夕阳下迎风的飞驰，相见时花和肆意的相拥；我要帮助更多的生命，受伤的动物，摇摇欲坠的家庭，走不出大山的孩子，无尽的远方和无数的人们都和我有关。
+我没有什么大的愿景，托家庭之福利，我已经走过很远的路，见过很多伟大和辉煌，余生我只希望能和我的朋友们，家人，或许还有爱人度过平安而幸福的一生。但我相信命运的钥匙掌握在自己手中，幸福需要自己争取，我要变得更强大，直到我有足够的能力获得自己想要的生活，守护想 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/blog/2024/10/27/LEETCODE684/" title="LEETCODE684"><img class="post-bg" src="/blog/img/ryo.gif" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE684"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/27/LEETCODE684/" title="LEETCODE684">LEETCODE684</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-27T04:07:42.000Z" title="发表于 2024-10-27 12:07:42">2024-10-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/ACM/">ACM</a></span></div><div class="content">684. 冗余连接
+思路：如果在一棵树上加一条边会破坏树的性质，所以什么是一棵树的性质？
+树的两个节点之间有且仅有一条唯一路径，换句话说就是一个没有环的连通图
+所以很明显利用这一性质，题目中又提到返回最后一条冗余的边，所以我们正常按顺序处理连通关系就可以
+并查集模板题
+Solutions：1234567891011121314151617181920212223242526int fa[1010];int find(int i)&#123;    return (fa[i]==i?i:fa[i]=find(fa[i]));&#125;class Solution &#123;public:    vector&lt;int&gt; findRedundantConnection(vector&lt;vector&lt;int&gt;&gt;&amp; edges) &#123;        int n=edges.size();        auto merge=[&amp;](int x,int y)&#123;            if(find(x)==find(y))re ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/blog/2024/10/25/Round981DIV3/" title="Round981DIV3"><img class="post-bg" src="/blog/img/ryo.gif" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Round981DIV3"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/25/Round981DIV3/" title="Round981DIV3">Round981DIV3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-25T05:38:36.000Z" title="发表于 2024-10-25 13:38:36">2024-10-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/ACM/">ACM</a></span></div><div class="content">C. Sakurako’s Field Trip
+思路对于每个位置计算交换以及不交换分别会产生的扰乱度，根据扰乱度的大小决定是否进行交换，最后统计一次答案即可
+Solution12345678910111213141516171819202122232425262728293031323334353637#include &lt;bits/stdc++.h&gt;using namespace std;#define fi first#define se secondusing ll = long long;void solve() &#123;    int n;    cin &gt;&gt; n;    vector&lt;int&gt; a(n + 1);    for (int i = 1; i &lt;= n; i++) &#123;        cin &gt;&gt; a[i];    &#125;    for (int i = 2; i &lt;= n / 2; i++) &#123;        int pre = (a[i] == a[i - 1]) + ( ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/blog/2024/10/22/MIT6-S081-LAB0/" title="MIT6.S081_LAB0"><img class="post-bg" src="/blog/img/kabuto.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="MIT6.S081_LAB0"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/22/MIT6-S081-LAB0/" title="MIT6.S081_LAB0">MIT6.S081_LAB0</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-22T12:42:14.000Z" title="发表于 2024-10-22 20:42:14">2024-10-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/OS/">OS</a></span></div><div class="content">XV6 LabLab1: Xv6 and Unix utilitiesxv6的安装以及启动网络上有很详细全面的教程，我就不在此赘述
+1.sleep(难度：Easy)实现xv6的UNIX程序sleep：您的sleep应该暂停到用户指定的计时数。一个滴答(tick)是由xv6内核定义的时间概念，即来自定时器芯片的两个中断之间的时间。
+实验中需要将编写好的c语言sleep程序添加到 Makefile 中的UPROGS中；完成之后，make qemu将编译您的程序，并且您可以从xv6的shell运行它。
+在c语言中 argc参数代表shell接收到的参数个数，argv就是接收到的具体参数
+注意c语言中的头文件引入很可能有互相的依赖，所以引入的顺序是一定的，使用clang需要关闭自动按字母排序的选项
+记得make qemu
+123456789101112131415#include &quot;kernel/types.h&quot;#include &quot;kernel/stat.h&quot;#include &quot;user/user.h&quot;int main(int arg ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/blog/2024/10/13/LEETCODE1884/" title="LEETCODE1884"><img class="post-bg" src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE1884"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/13/LEETCODE1884/" title="LEETCODE1884">LEETCODE1884</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-13T01:16:38.000Z" title="发表于 2024-10-13 09:16:38">2024-10-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/ACM/">ACM</a></span></div><div class="content">1884. 鸡蛋掉落-两枚鸡蛋
+思路观察样例的解释可以发现答案后面是一个类似6 5 4 3 2 1这样的递减序列，那我们思考为什么会产生这样的序列。在假定操作次数T相同的情况下，因为如果每次扔鸡蛋会用掉一次次数的话，那么在鸡蛋摔碎的情况下下一次用于验证的次数就会少一个。那我们就自然想到反向验证，在操作次数为T的情况下最多可以验证多高的楼层？
+设操作次数为T，那么可确定的楼层数为									$$T+(T-1)+(T-2)+…+1&#x3D;\frac{T(T-1)}{2}$$设楼层数为N，得到不等式$$N\leq\frac{T(T-1)}{2}$$
+$$解得T≥\frac{\sqrt{8n+1}-1}{2}$$
+解方程即可
+时间复杂度：O（1）Solution123456class Solution &#123;public:    int twoEggDrop(int n) &#123;        return (int) ceil(sqrt(n * 8 + 1)) / 2;    &#125;&#125;;
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/blog/2024/10/12/LEETCODE3158/" title="LEETCODE3158"><img class="post-bg" src="/blog/img/asuka.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3158"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/12/LEETCODE3158/" title="LEETCODE3158">LEETCODE3158</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-12T04:27:09.000Z" title="发表于 2024-10-12 12:27:09">2024-10-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/ACM/">ACM</a></span></div><div class="content">3158. 求出出现两次数字的 XOR 值
+解决思路遍历 nums，同时用一个 vis 集合记录遇到的数字。
+
+设 x&#x3D;nums[i]。
+
+如果 x 不在 vis 中，说明是第一次遇到，加入 vis。
+
+如果 x 在 vis 中，说明是第二次遇到，加入答案
+
+
+Solution123456789101112131415class Solution &#123;public:    int duplicateNumbersXOR(vector&lt;int&gt;&amp; nums) &#123;        int ans = 0;        long long vis = 0;        for (int x : nums) &#123;            if (vis &gt;&gt; x &amp; 1) &#123;                 ans ^= x;            &#125; else &#123;                vis |= 1LL &lt;&lt; x;             &#125;       ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/blog/2024/10/11/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B102/" title="牛客小白月赛102"><img class="post-bg" src="/blog/img/ryo.gif" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="牛客小白月赛102"></a></div><div class="recent-post-info"><a class="article-title" href="/blog/2024/10/11/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B102/" title="牛客小白月赛102">牛客小白月赛102</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-11T14:18:57.000Z" title="发表于 2024-10-11 22:18:57">2024-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/blog/categories/ACM/">ACM</a></span></div><div class="content">B题
+解法思路$f(n)$和$f(n-1)$之间的区别就是式子的底部加了一个$\frac{1}{a}$
+e.g.$f(2)&#x3D;a+\frac{1}{a},f(3)&#x3D;a+\cfrac{1}{a+\cfrac{1}{a}}$
+根据递推关系可知，当n趋近于无穷大的时候这个影响可以忽略不计，所以我们可以得到$x&#x3D;a+\frac{1}{x}$
+解方程并且取正解可得答案
+Solution1234567891011121314151617181920212223242526272829#include&lt;bits/stdc++.h&gt;using namespace std;using ll=long long;ll read()&#123;    ll a=0;int f=0;char p=getchar();    while(!isdigit(p))&#123;f|=p==&#x27;-&#x27;;p=getchar();&#125;    while(isdigit(p))&#123;a=(a&lt;&lt;3)+(a&lt;&lt;1)+(p^48);p ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/blog/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/blog/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/blog/img/avatar.jpg" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">i6bimua</div><div class="author-info__description">天有雨</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/i6biua"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天有雨</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/2025/04/20/hungyi-Lee-ML/" title="hungyi_Lee_ML"><img src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="hungyi_Lee_ML"/></a><div class="content"><a class="title" href="/blog/2025/04/20/hungyi-Lee-ML/" title="hungyi_Lee_ML">hungyi_Lee_ML</a><time datetime="2025-04-20T14:04:16.000Z" title="发表于 2025-04-20 22:04:16">2025-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/12/LEETCODE3258/" title="LEETCODE3258"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3258"/></a><div class="content"><a class="title" href="/blog/2024/11/12/LEETCODE3258/" title="LEETCODE3258">LEETCODE3258</a><time datetime="2024-11-12T14:18:13.000Z" title="发表于 2024-11-12 22:18:13">2024-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/10/LEETCODE540/" title="LEETCODE540"><img src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE540"/></a><div class="content"><a class="title" href="/blog/2024/11/10/LEETCODE540/" title="LEETCODE540">LEETCODE540</a><time datetime="2024-11-10T01:49:46.000Z" title="发表于 2024-11-10 09:49:46">2024-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/06/LEETCODE3255/" title="LEETCODE3255"><img src="/blog/img/kabuto.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3255"/></a><div class="content"><a class="title" href="/blog/2024/11/06/LEETCODE3255/" title="LEETCODE3255">LEETCODE3255</a><time datetime="2024-11-06T01:36:01.000Z" title="发表于 2024-11-06 09:36:01">2024-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2024/11/05/LEETCODE3222/" title="LEETCODE3222"><img src="/blog/img/raingirl.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="LEETCODE3222"/></a><div class="content"><a class="title" href="/blog/2024/11/05/LEETCODE3222/" title="LEETCODE3222">LEETCODE3222</a><time datetime="2024-11-05T04:57:18.000Z" title="发表于 2024-11-05 12:57:18">2024-11-05</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/blog/categories/ACM/"><span class="card-category-list-name">ACM</span><span class="card-category-list-count">35</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/blog/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/blog/categories/OS/"><span class="card-category-list-name">OS</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/blog/categories/%E4%BD%93%E8%82%B2/"><span class="card-category-list-name">体育</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/"><span class="card-category-list-name">数据结构与算法分析</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">计算机组成原理</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/blog/tags/xv6/" style="font-size: 1.3em; color: #99a1ac">xv6</a> <a href="/blog/tags/ML/" style="font-size: 1.1em; color: #999">ML</a> <a href="/blog/tags/CPP/" style="font-size: 1.5em; color: #99a9bf">CPP</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">计算机组成原理</a> <a href="/blog/tags/C/" style="font-size: 1.3em; color: #99a1ac">C</a> <a href="/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" style="font-size: 1.1em; color: #999">数据结构与算法分析</a> <a href="/blog/tags/%E5%A4%8D%E4%B9%A0/" style="font-size: 1.3em; color: #99a1ac">复习</a> <a href="/blog/tags/800-1500m/" style="font-size: 1.1em; color: #999">800/1500m</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2025/04/"><span class="card-archive-list-date">四月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">9</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">41</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-04-20T14:12:26.585Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By i6bimua</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
